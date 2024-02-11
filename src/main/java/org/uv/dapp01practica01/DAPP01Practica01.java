@@ -25,8 +25,10 @@ public class DAPP01Practica01 {
             //insert
             st= con.createStatement();
             String sql="insert into empleadotemporal (nombre,direccion,telefono)"+" values('Tato','calle 1','1234')";
+              st.executeUpdate(sql); 
             
-            Logger.getLogger(DAPP01Practica01.class.getName()).log(Level.INFO, "Se conectó!");
+            Logger.getLogger(DAPP01Practica01.class.getName()).log(Level.INFO, "Se conectó y Se insertó el dato correctamente.");
+
         } catch (SQLException ex) {
             Logger.getLogger(DAPP01Practica01.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -45,5 +47,8 @@ public class DAPP01Practica01 {
                     Logger.getLogger(DAPP01Practica01.class.getName()).log(Level.SEVERE, null, ex);   
             }
         }
+        
+
+
     }
 }
