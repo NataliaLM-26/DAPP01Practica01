@@ -15,6 +15,8 @@ import java.util.logging.Logger;
 public class DAPP01Practica01 {
 
     public static void main(String[] args) {
+       //importa dao y haz el menu para llamar a los métodos
+        
         String nombre;
         String direccion;
         int telefono;
