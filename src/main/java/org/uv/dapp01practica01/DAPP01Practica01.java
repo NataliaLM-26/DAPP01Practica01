@@ -16,11 +16,11 @@ import java.util.logging.Logger;
 public class DAPP01Practica01 {
 
     public static void main(String[] args) {
-       //importa dao y haz el menu para llamar a los métodos
+        DAOEmpleado metodo=new DAOEmpleado();
         
         String nombre;
         String direccion;
-        int telefono;
+        String telefono;
         int id;
         Scanner scan = new Scanner(System.in);
         int option;
@@ -28,21 +28,22 @@ public class DAPP01Practica01 {
         PreparedStatement ps = null;
         //conexión a bd
         try {
-            String url = "jdbc:postgresql://localhost:5432/libros";
+            String url = "jdbc:postgresql://localhost:5432/ejemplo";
             String usr = "postgres";
-            String pwd = "24042002";
+            String pwd = "laptophp";
             con = DriverManager.getConnection(url, usr, pwd);
         } catch (SQLException ex) {
             Logger.getLogger(DAPP01Practica01.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         do {
-            Logger.getLogger(DAPP01Practica01.class.getName()).log(Level.INFO, "Menú: \n1. Insertar \n2. Actualizar \n3. Eliminar \n4. Ver \n5. Salir");
+            Logger.getLogger(DAPP01Practica01.class.getName()).log(Level.INFO, "Menú: \n1. Insertar \n2. Actualizar \n3. Eliminar \n4. Buscar por id \n5. Mostrar \n6. Salir");
             option = scan.nextInt();
 
             switch (option) {
                 case 1:
-                     try {
+                    
+                    //FALTA como implementar aquí el método del DAO, creo que sería con el get y haciendo referencia al objeto, no sé sjsj
                     scan.nextLine();
 
                     Logger.getLogger(DAPP01Practica01.class.getName()).log(Level.INFO, "Introduzca su nombre:");
@@ -52,31 +53,7 @@ public class DAPP01Practica01 {
                     direccion = scan.nextLine();
 
                     Logger.getLogger(DAPP01Practica01.class.getName()).log(Level.INFO, "Introduzca su teléfono:");
-                    telefono = scan.nextInt();
-
-                    //insert
-                    String sql = "insert into empleadotemporal (nombre,direccion,telefono)" + " values(?,?,?)";
-                    ps = con.prepareStatement(sql);
-
-                    ps.setString(1, nombre);
-                    ps.setString(2, direccion);
-                    ps.setInt(3, telefono);
-
-                    ps.executeUpdate();
-
-                    Logger.getLogger(DAPP01Practica01.class.getName()).log(Level.INFO, "Se conectó y Se insertó el dato correctamente.");
-
-                } catch (SQLException ex) {
-                    Logger.getLogger(DAPP01Practica01.class.getName()).log(Level.SEVERE, null, ex);
-                } finally {
-                    try {
-                        if (ps != null) {
-                            ps.close();
-                        }
-                    } catch (SQLException ex) {
-                        Logger.getLogger(DAPP01Practica01.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
+                    telefono = scan.nextLine();
                 break;
                 case 2:
                     try {
@@ -90,14 +67,14 @@ public class DAPP01Practica01 {
                     direccion = scan.nextLine();
 
                     Logger.getLogger(DAPP01Practica01.class.getName()).log(Level.INFO, "Introduzca su teléfono:");
-                    telefono = scan.nextInt();
+                    telefono = scan.nextLine();
 
                     String sql = "UPDATE empleadotemporal SET nombre = ?, direccion = ?, telefono = ? WHERE id = ?";
                     ps = con.prepareStatement(sql);
 
                     ps.setString(1, nombre);
                     ps.setString(2, direccion);
-                    ps.setInt(3, telefono);
+                    ps.setString(3, telefono);
                     ps.setInt(4, id);
 
                     ps.executeUpdate();
@@ -155,10 +132,14 @@ public class DAPP01Practica01 {
                     Logger.getLogger(DAPP01Practica01.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 break;
+                case 5: 
+                    //Manda a traer al método findAll
+                    Logger.getLogger(DAPP01Practica01.class.getName()).log(Level.INFO, metodo.toString());
+                break;
                 default:
                         Logger.getLogger(DAPP01Practica01.class.getName()).log(Level.INFO, "Introduzca una opción válida.");
             }
-        } while (option != 5);
+        } while (option != 6);
         scan.close();
     }
 }
