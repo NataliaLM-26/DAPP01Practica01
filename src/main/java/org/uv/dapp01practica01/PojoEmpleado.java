@@ -47,11 +47,10 @@ public class PojoEmpleado {
     
     @Override
     public String toString() {
-        return "PojoEmpleado{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", telefono='" + telefono + '\'' +
-                '}';
+        return 
+                "id:" + id +
+                ", nombre: " + nombre + 
+                ", direccion:" + direccion +
+                ", telefono:" + telefono + '\n';
     }
 }
