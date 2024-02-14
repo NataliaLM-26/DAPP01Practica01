@@ -16,7 +16,7 @@ public class DAOEmpleado {
         try {
             String url = "jdbc:postgresql://localhost:5432/ejemplo";
             String usr = "postgres";
-            String pwd = "24042002";
+            String pwd = "laptophp";
             Connection con;
             con = DriverManager.getConnection(url, usr, pwd);
 
@@ -39,7 +39,7 @@ public class DAOEmpleado {
         try {
             String url = "jdbc:postgresql://localhost:5432/ejemplo";
             String usr = "postgres";
-            String pwd = "24042002";
+            String pwd = "laptophp";
             String sql = "DELETE FROM empleadotemporal WHERE id = ?";
             Connection con = DriverManager.getConnection(url, usr, pwd);
 
@@ -57,7 +57,7 @@ public class DAOEmpleado {
         try {
             String url = "jdbc:postgresql://localhost:5432/ejemplo";
             String usr = "postgres";
-            String pwd = "24042002";
+            String pwd = "laptophp";
 
             String sql = "UPDATE empleadotemporal SET nombre = ?, direccion = ?, telefono = ? WHERE id = ?";
             Connection con = DriverManager.getConnection(url, usr, pwd);
@@ -81,7 +81,7 @@ public class DAOEmpleado {
         try {
             String url = "jdbc:postgresql://localhost:5432/ejemplo";
             String usr = "postgres";
-            String pwd = "24042002";
+            String pwd = "laptophp";
 
             String sql = "select * from empleadotemporal where id=?";
             Connection con = DriverManager.getConnection(url, usr, pwd);
@@ -110,7 +110,7 @@ public class DAOEmpleado {
         try {
             String url = "jdbc:postgresql://localhost:5432/ejemplo";
             String usr = "postgres";
-            String pwd = "24042002";
+            String pwd = "laptophp";
             Connection con = DriverManager.getConnection(url, usr, pwd);
 
             String sql = "select * from empleadotemporal";
