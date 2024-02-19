@@ -10,13 +10,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class DAOEmpleado {
+public class DAOEmpleado implements InterfaceDAO<PojoEmpleado, Long>{
 
     public boolean guardar(PojoEmpleado empleado) {
         try {
             String url = "jdbc:postgresql://localhost:5432/ejemplo";
             String usr = "postgres";
-            String pwd = "24042002";
+            String pwd = "laptophp";
             Connection con;
             con = DriverManager.getConnection(url, usr, pwd);
 
@@ -39,7 +39,7 @@ public class DAOEmpleado {
         try {
             String url = "jdbc:postgresql://localhost:5432/ejemplo";
             String usr = "postgres";
-            String pwd = "24042002";
+            String pwd = "laptophp";
             String sql = "DELETE FROM empleadotemporal WHERE id = ?";
             Connection con = DriverManager.getConnection(url, usr, pwd);
 
@@ -57,7 +57,7 @@ public class DAOEmpleado {
         try {
             String url = "jdbc:postgresql://localhost:5432/ejemplo";
             String usr = "postgres";
-            String pwd = "24042002";
+            String pwd = "laptophp";
 
             String sql = "UPDATE empleadotemporal SET nombre = ?, direccion = ?, telefono = ? WHERE id = ?";
             Connection con = DriverManager.getConnection(url, usr, pwd);
@@ -81,7 +81,7 @@ public class DAOEmpleado {
         try {
             String url = "jdbc:postgresql://localhost:5432/ejemplo";
             String usr = "postgres";
-            String pwd = "24042002";
+            String pwd = "laptophp";
 
             String sql = "select * from empleadotemporal where id=?";
             Connection con = DriverManager.getConnection(url, usr, pwd);
@@ -110,7 +110,7 @@ public class DAOEmpleado {
         try {
             String url = "jdbc:postgresql://localhost:5432/ejemplo";
             String usr = "postgres";
-            String pwd = "24042002";
+            String pwd = "laptophp";
             Connection con = DriverManager.getConnection(url, usr, pwd);
 
             String sql = "select * from empleadotemporal";
@@ -129,6 +129,31 @@ public class DAOEmpleado {
             Logger.getLogger(DAPP01Practica01.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listaEmpleados;
+    }
+
+    @Override
+    public PojoEmpleado save(PojoEmpleado pojo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public PojoEmpleado update(PojoEmpleado pojo, int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean delete(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public PojoEmpleado findById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<PojoEmpleado> findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
