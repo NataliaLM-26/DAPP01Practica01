@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class DAOEmpleado {
+public class DAOEmpleado implements InterfaceDAO<PojoEmpleado, Long>{
 
     public boolean guardar(PojoEmpleado empleado) {
         try {
@@ -129,6 +129,31 @@ public class DAOEmpleado {
             Logger.getLogger(DAPP01Practica01.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listaEmpleados;
+    }
+
+    @Override
+    public PojoEmpleado save(PojoEmpleado pojo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public PojoEmpleado update(PojoEmpleado pojo, int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean delete(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public PojoEmpleado findById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<PojoEmpleado> findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
