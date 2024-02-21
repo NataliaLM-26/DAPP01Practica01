@@ -23,7 +23,7 @@ public class ConexionDB {
    try {
             String url = "jdbc:postgresql://localhost:5432/ejemplo";
             String usr = "postgres";
-            String pwd = "laptophp";
+            String pwd = "24042002";
             con =DriverManager.getConnection(url, usr, pwd);
             Logger.getLogger(ConexionDB.class.getName()).log(Level.INFO,"se conecto");
         } catch (SQLException ex) {
