@@ -23,7 +23,7 @@ public class ConexionDB {
    try {
             String url = "jdbc:postgresql://localhost:5432/ejemplo";
             String usr = "postgres";
-            String pwd = "24042002";
+            String pwd = "laptophp";
             con =DriverManager.getConnection(url, usr, pwd);
             Logger.getLogger(ConexionDB.class.getName()).log(Level.INFO,"se conecto");
         } catch (SQLException ex) {
@@ -51,10 +51,15 @@ public class ConexionDB {
             }
         }
     }
-     
+    
+    public boolean execute(TransactionDB tra){
+        return tra.execute(con);
+    }
+    
      public ResultSet select(String sql){
         try(Statement st = con.createStatement()){
-            ResultSet reg = st.executeQuery(sql);
+            ResultSet reg;
+            reg = st.executeQuery(sql);
             return reg;
         } catch (SQLException ex){
             Logger.getLogger(ConexionDB.class.getName()).log(Level.SEVERE, null,ex);
