@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,7 +24,7 @@ public class ConexionDB {
    try {
             String url = "jdbc:postgresql://localhost:5432/ejemplo";
             String usr = "postgres";
-            String pwd = "24042002";
+            String pwd = "laptophp";
             con =DriverManager.getConnection(url, usr, pwd);
             Logger.getLogger(ConexionDB.class.getName()).log(Level.INFO,"se conecto");
         } catch (SQLException ex) {
@@ -54,6 +55,10 @@ public class ConexionDB {
     
     public boolean execute(TransactionDB tra){
         return tra.execute(con);
+    }
+    
+    public List select(SelectionDB select){
+        return select.find(con);
     }
     
      public ResultSet select(String sql){
