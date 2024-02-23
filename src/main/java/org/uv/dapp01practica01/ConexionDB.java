@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -56,6 +57,11 @@ public class ConexionDB {
         return tra.execute(con);
     }
     
+    
+    public List select(SelectionDB select){
+        return select.find(con);   
+    }
+            
      public ResultSet select(String sql){
         try(Statement st = con.createStatement()){
             ResultSet reg;

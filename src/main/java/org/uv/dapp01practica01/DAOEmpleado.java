@@ -102,68 +102,64 @@ public class DAOEmpleado implements InterfaceDAO<PojoEmpleado, Long> {
 
     @Override
     public PojoEmpleado findById(Long id) {
-        class Resultado {
-
-            PojoEmpleado empleado;
-        }
-        final Resultado resultado = new Resultado();
-
-        TransactionDB t = new TransactionDB<Long>(id) {
+        SelectionDB select = new SelectionDB() {
             @Override
-            public boolean execute(Connection con) {
-                try {
-                    String sql = "select * from empleadotemporal where id=?";
-                    PreparedStatement pstm = con.prepareStatement(sql);
-                    pstm.setLong(1, id);
-                    ResultSet reg = pstm.executeQuery();
-
-                    if (reg.next()) {
-                        resultado.empleado = new PojoEmpleado();
-                        resultado.empleado.setId(reg.getInt(1));
-                        resultado.empleado.setNombre(reg.getString(2));
-                        resultado.empleado.setDireccion(reg.getString(3));
-                        resultado.empleado.setTelefono(reg.getString(4));
-                    } 
-                        
-                    return true;
-                } catch (SQLException e) {
-                    Logger.getLogger(DAPP01Practica01.class.getName()).log(Level.SEVERE, null, e);
-                    return false;
-                }
-            }
-        };
-        con.execute(t);
-        return resultado.empleado;
-    }
-
-    @Override
-    public List<PojoEmpleado> findAll() {
-        List<PojoEmpleado> listaEmpleados = new ArrayList<>();
-
-        TransactionDB<List<PojoEmpleado>> t = new TransactionDB<List<PojoEmpleado>>(listaEmpleados) {
-            @Override
-            public boolean execute(Connection con) {
+            public List find(Connection con) {
                 try {
                     String sql = "select * from empleadotemporal";
                     PreparedStatement pstm = con.prepareStatement(sql);
                     ResultSet reg = pstm.executeQuery();
-
+                    List lst = new ArrayList<PojoEmpleado>();
                     while (reg.next()) {
                         PojoEmpleado empleado = new PojoEmpleado();
                         empleado.setId(reg.getInt(1));
                         empleado.setNombre(reg.getString(2));
                         empleado.setDireccion(reg.getString(3));
                         empleado.setTelefono(reg.getString(4));
-                        listaEmpleados.add(empleado);
+                        lst.add(empleado);
                     }
-                    return true;
+                    return lst;
                 } catch (SQLException ex) {
                     Logger.getLogger(DAPP01Practica01.class.getName()).log(Level.SEVERE, null, ex);
+                    return null;
                 }
-                return false;
             }
         };
-        con.execute(t);
-        return t.pojo;
+        ConexionDB con = ConexionDB.getInstance();
+        List lst = con.select(select);
+        PojoEmpleado e = (PojoEmpleado) lst.get(0);
+        return e;
+    }
+
+    @Override
+    public List<PojoEmpleado> findAll() {
+
+        SelectionDB select = new SelectionDB() {
+            @Override
+            public List find(Connection con) {
+                try {
+                    String sql = "select * from empleadotemporal";
+                    PreparedStatement pstm = con.prepareStatement(sql);
+                    ResultSet reg = pstm.executeQuery();
+                    List lst = new ArrayList<PojoEmpleado>();
+                    while (reg.next()) {
+                        PojoEmpleado empleado = new PojoEmpleado();
+                        empleado.setId(reg.getInt(1));
+                        empleado.setNombre(reg.getString(2));
+                        empleado.setDireccion(reg.getString(3));
+                        empleado.setTelefono(reg.getString(4));
+                        lst.add(empleado);
+                    }
+                    return lst;
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(DAPP01Practica01.class.getName()).log(Level.SEVERE, null, ex);
+                    return null;
+                }
+            }
+        };
+        ConexionDB con = ConexionDB.getInstance();
+        List lst = con.select(select);
+        return lst;
     }
 }
