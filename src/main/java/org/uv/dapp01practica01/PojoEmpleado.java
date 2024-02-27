@@ -1,5 +1,11 @@
 package org.uv.dapp01practica01;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 /**
  * @author miran
  * 
@@ -7,10 +13,22 @@ package org.uv.dapp01practica01;
  * DTO
  * Maping --- ORM
  */
-public class PojoEmpleado {
+
+@Entity(name = "Empleadostemporal")
+public class PojoEmpleado implements Serializable {
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
+
+    @Column(name = "nombre")
     private String nombre;
+
+    @Column(name = "direccion")
     private String direccion;
+       
+    @Column(name = "telefono")
     private String telefono;
 
     public int getId() {
@@ -44,13 +62,12 @@ public class PojoEmpleado {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    
+
     @Override
     public String toString() {
-        return 
-                "id:" + id +
-                ", nombre: " + nombre + 
-                ", direccion:" + direccion +
-                ", telefono:" + telefono + '\n';
+        return "id:" + id
+                + ", nombre: " + nombre
+                + ", direccion:" + direccion
+                + ", telefono:" + telefono + '\n';
     }
 }
