@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -54,6 +55,10 @@ public class ConexionDB {
     
     public boolean execute(TransactionDB tra){
         return tra.execute(con);
+    }
+    
+    public List select(SelectionDB select){
+        return select.find(con);
     }
     
      public ResultSet select(String sql){
