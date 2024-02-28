@@ -4,6 +4,10 @@ org\uv\dapp01practica01\DAPP01Practica01.class
 org\uv\dapp01practica01\DAOEmpleado.class
 org\uv\dapp01practica01\InterfaceDAO.class
 org\uv\dapp01practica01\DAOEmpleado$4.class
+<<<<<<< HEAD
+=======
+org\uv\dapp01practica01\mainPrueba.class
+>>>>>>> natalia
 org\uv\dapp01practica01\SelectionDB.class
 org\uv\dapp01practica01\TransactionDB.class
 org\uv\dapp01practica01\ConexionDB.class

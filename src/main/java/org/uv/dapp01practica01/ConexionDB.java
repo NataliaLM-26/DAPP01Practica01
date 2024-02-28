@@ -57,11 +57,10 @@ public class ConexionDB {
         return tra.execute(con);
     }
     
-    
     public List select(SelectionDB select){
-        return select.find(con);   
+        return select.find(con);
     }
-            
+    
      public ResultSet select(String sql){
         try(Statement st = con.createStatement()){
             ResultSet reg;

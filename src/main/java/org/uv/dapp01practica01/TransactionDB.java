@@ -1,6 +1,6 @@
 package org.uv.dapp01practica01;
 import java.sql.Connection;
-import java.util.List;
+
 
 public abstract class TransactionDB <T>{
     //el tipo T es generic
@@ -13,5 +13,5 @@ public abstract class TransactionDB <T>{
     
     public abstract boolean execute(Connection con);
     
-    //public abstract List<T> select(Connection con);
+    
 }

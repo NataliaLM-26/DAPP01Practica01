@@ -13,29 +13,27 @@ import javax.persistence.Id;
  * DTO
  * Maping --- ORM
  */
-
-@Entity(name = "Empleadostemporal")
+@Entity(name="empleadotemporal")
 public class PojoEmpleado implements Serializable {
-
     @Id
-    @Column(name = "id")
+    @Column(name="id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int id;
-
-    @Column(name = "nombre")
+    private Long id;
+    
+    @Column(name="nombre")
     private String nombre;
-
-    @Column(name = "direccion")
+    
+    @Column(name="direccion")
     private String direccion;
-       
-    @Column(name = "telefono")
+    
+    @Column(name="telefono")
     private String telefono;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
