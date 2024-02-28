@@ -3,31 +3,17 @@ package org.uv.dapp01practica01;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 public class DAPP01Practica01 {
 
     public static void main(String[] args) {
-//        SessionFactory sf = HibernateUtil.getSessionFactory();
-//        PojoEmpleado empleado = new PojoEmpleado();
-//        empleado.setNombre("elsa");
-//        empleado.setDireccion("calle elsa");
-//        empleado.setTelefono("263");
-//        
-//        Session session = sf.getCurrentSession();
-//        Transaction transaction = session.beginTransaction();
-//        session.save(empleado);
-//        transaction.commit();
-//        System.err.println("Se guardó con ID: " + empleado.getId());
         
         DAOEmpleado metodo = new DAOEmpleado();
-
         String nombre;
         String direccion;
         String telefono;
         Long id;
+        
         try (Scanner scan = new Scanner(System.in)) {
             int option;
 
@@ -76,7 +62,6 @@ public class DAPP01Practica01 {
 
                         break;
                     case 4:
-                        //findById
                         Logger.getLogger(DAPP01Practica01.class.getName()).log(Level.INFO, "Introduzca el id que desea mostrar:");
                         id = scan.nextLong();
                         if (metodo.findById(id) != null) {
@@ -87,7 +72,6 @@ public class DAPP01Practica01 {
                         }
                         break;
                     case 5:
-                        //Manda a traer al método findAll
                         Logger.getLogger(DAPP01Practica01.class.getName()).log(Level.INFO, metodo.findAll().toString());
                         break;
                     default:
