@@ -53,7 +53,7 @@ public class DAOEmpleadoOld implements InterfaceDAO<PojoEmpleado, Long> {
                     String sql = "UPDATE empleadotemporal SET nombre = ?, direccion = ?, telefono = ? WHERE id = ?";
                     PreparedStatement pstm = con.prepareStatement(sql);
 
-                    pstm.setInt(4, empleado.getId());
+                    pstm.setLong(4, empleado.getId());
                     pstm.setString(1, empleado.getNombre());
                     pstm.setString(2, empleado.getDireccion());
                     pstm.setString(3, empleado.getTelefono());
@@ -114,7 +114,7 @@ public class DAOEmpleadoOld implements InterfaceDAO<PojoEmpleado, Long> {
                     List lst=new ArrayList<PojoEmpleado>();
                     while(reg.next()){
                         PojoEmpleado p=new PojoEmpleado();
-                        p.setId(reg.getInt(1));
+                        p.setId(reg.getLong(1));
                         p.setNombre(reg.getString(2));
                         p.setDireccion(reg.getString(3));
                         p.setTelefono(reg.getString(4));
@@ -146,7 +146,7 @@ public class DAOEmpleadoOld implements InterfaceDAO<PojoEmpleado, Long> {
 
                     while (reg.next()) {
                         PojoEmpleado empleado = new PojoEmpleado();
-                        empleado.setId(reg.getInt(1));
+                        empleado.setId(reg.getLong(1));
                         empleado.setNombre(reg.getString(2));
                         empleado.setDireccion(reg.getString(3));
                         empleado.setTelefono(reg.getString(4));

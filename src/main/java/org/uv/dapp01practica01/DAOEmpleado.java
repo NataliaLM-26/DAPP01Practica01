@@ -22,7 +22,10 @@ public class DAOEmpleado implements InterfaceDAO<PojoEmpleado, Long>{
         Transaction transaction=session.beginTransaction();
         PojoEmpleado empleado=session.get(PojoEmpleado.class, id);
         if(empleado!=null){
-            session.update(pojo);
+            empleado.setNombre(pojo.getNombre());
+            empleado.setDireccion(pojo.getDireccion());
+            empleado.setTelefono(pojo.getTelefono());
+            session.update(empleado);
             transaction.commit();
         }
         session.close();
@@ -36,7 +39,7 @@ public class DAOEmpleado implements InterfaceDAO<PojoEmpleado, Long>{
         boolean resul=false;
         PojoEmpleado empleado=session.get(PojoEmpleado.class, id);
         if(empleado!=null){
-            session.delete(id);
+            session.delete(empleado);
             transaction.commit();
             resul=true;
         }
