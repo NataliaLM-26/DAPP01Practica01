@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 /**
  * @author miran
  * 
@@ -13,11 +14,16 @@ import javax.persistence.Id;
  * DTO
  * Maping --- ORM
  */
-@Entity(name="empleadotemporal")
+@Entity(name="empleadosuv")
 public class PojoEmpleado implements Serializable {
     @Id
     @Column(name="id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, 
+            generator = "empleadosuv_id_seq")
+    @SequenceGenerator(name = "empleadosuv_id_seq",
+            sequenceName = "empleadosuv_id_seq",
+            initialValue = 1,
+            allocationSize = 1)
     private Long id;
     
     @Column(name="nombre")
