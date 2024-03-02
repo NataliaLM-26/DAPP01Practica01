@@ -6,11 +6,16 @@ package org.uv.dapp01practica01;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -20,7 +25,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "venta")
-public class venta implements Serializable {
+public class Venta implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "venta_idventa_seq")
@@ -29,13 +34,20 @@ public class venta implements Serializable {
     private long id;
     
     @Column
-    private Date fec;
+    private Date fecha;
     
     @Column
     private String cliente;
     
     @Column
     private Double total;
+
+    @OneToMany(mappedBy = "venta", fetch = FetchType.LAZY)
+    private List<DetalleVenta> detalleVenta;
+    
+    public Venta(){
+        detalleVenta=new ArrayList<>();
+    }
 
     public long getId() {
         return id;
@@ -45,12 +57,12 @@ public class venta implements Serializable {
         this.id = id;
     }
 
-    public Date getFec() {
-        return fec;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setFec(Date fec) {
-        this.fec = fec;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
     public String getCliente() {
@@ -67,6 +79,13 @@ public class venta implements Serializable {
 
     public void setTotal(Double total) {
         this.total = total;
+    }
+    public List<DetalleVenta> getDetalleVenta() {
+        return detalleVenta;
+    }
+
+    public void setDetalleVenta(List<DetalleVenta> detalleVenta) {
+        this.detalleVenta = detalleVenta;
     }
 
 }

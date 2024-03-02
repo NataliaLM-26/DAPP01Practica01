@@ -1,5 +1,8 @@
 package org.uv.dapp01practica01;
 
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,16 +14,28 @@ public class DAPP01Practica01 {
 
     public static void main(String[] args) {
         SessionFactory sf = HibernateUtil.getSessionFactory();
-        PojoEmpleado empleado = new PojoEmpleado();
-        empleado.setNombre("elsa");
-        empleado.setDireccion("calle elsa");
-        empleado.setTelefono("263");
+        
+        Venta venta = new Venta();
+        venta.setCliente("Publico General");
+        venta.setFecha(new Date(new java.util.Date().getTime()));
+        venta.setTotal(1000.00);
+        
+        List<DetalleVenta> lstDetalleVenta = new ArrayList<>();
+        for(int i = 0; i<5; i++){
+            DetalleVenta det = new DetalleVenta();
+            det.setPrecio(100);
+            det.setCantidad(10);
+            det.setProducto("Producto" + (i+1));
+            det.setVenta(venta);
+            venta.getDetalleVenta().add(det);
+        }
+        venta.setDetalleVenta(lstDetalleVenta);
         
         Session session = sf.getCurrentSession();
         Transaction transaction = session.beginTransaction();
-        session.save(empleado);
+        session.save(venta);
         transaction.commit();
-        System.err.println("Se guardó con ID: " + empleado.getId());
+        System.err.println("Se guardó con ID: " + venta.getId());
         
 //        DAOEmpleado metodo = new DAOEmpleado();
 //

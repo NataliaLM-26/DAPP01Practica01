@@ -4,11 +4,14 @@
  */
 package org.uv.dapp01practica01;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -18,7 +21,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "detalleventa")
-public class DetalleVenta {
+public class DetalleVenta implements Serializable {
     //intentar hacer el guradado
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "detalleventa_idlinea_seq")
@@ -34,9 +37,13 @@ public class DetalleVenta {
     
     @Column
     private String producto;
+
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private Venta venta;
     
-    @Column
-    private long idventa;
+    //@Column
+    //private long idventa;
 
     public long getId() {
         return id;
@@ -70,12 +77,19 @@ public class DetalleVenta {
         this.producto = producto;
     }
 
-    public long getIdventa() {
-        return idventa;
+    public Venta getVenta() {
+        return venta;
     }
 
-    public void setIdventa(long idventa) {
-        this.idventa = idventa;
+    public void setVenta(Venta venta) {
+        this.venta = venta;
     }
+    //public long getIdventa() {
+    //    return idventa;
+    //}
+//
+    //public void setIdventa(long idventa) {
+    //    this.idventa = idventa;
+    //}
 
 }
