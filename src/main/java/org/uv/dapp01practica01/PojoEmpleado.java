@@ -6,34 +6,39 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+
 /**
  * @author miran
- * 
- * Plain Old Java Object
- * DTO
- * Maping --- ORM
+ *
+ * Plain Old Java Object DTO Maping --- ORM
  */
-@Entity(name="empleadotemporal")
+@Entity(name = "empleadosuv")
 public class PojoEmpleado implements Serializable {
+
     @Id
-    @Column(name="id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
-    
-    @Column(name="nombre")
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "empleadosuv_id_seq")
+    @SequenceGenerator(name = "empleadosuv_id_seq",
+            sequenceName = "empleadosuv_id_seq",
+            initialValue = 1,
+            allocationSize = 1)
+    private long id;
+
+    @Column(name = "nombre")
     private String nombre;
-    
-    @Column(name="direccion")
+
+    @Column(name = "direccion")
     private String direccion;
-    
-    @Column(name="telefono")
+
+    @Column(name = "telefono")
     private String telefono;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
