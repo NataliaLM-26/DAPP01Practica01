@@ -27,7 +27,7 @@ public class DetalleVenta implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "detalleventa_idlinea_seq")
     @SequenceGenerator(name = "detalleventa_idlinea_seq", sequenceName = "detalleventa_idlinea_seq", allocationSize = 1, initialValue = 1)
     @Column(name = "idlinea")
-    private long id;
+    private long idlinea;
     
     @Column
     private double cantidad;
@@ -39,18 +39,18 @@ public class DetalleVenta implements Serializable {
     private String producto;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "idventa")
     private Venta venta;
     
     //@Column
     //private long idventa;
 
     public long getId() {
-        return id;
+        return idlinea;
     }
 
     public void setId(long id) {
-        this.id = id;
+        this.idlinea = id;
     }
 
     public double getCantidad() {
