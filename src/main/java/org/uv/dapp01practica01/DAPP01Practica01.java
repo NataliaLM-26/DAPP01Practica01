@@ -13,28 +13,22 @@ import org.hibernate.Transaction;
 public class DAPP01Practica01 {
 
     public static void main(String[] args) {
-        SessionFactory sf = HibernateUtil.getSessionFactory();
 
         Venta venta = new Venta();
-        DAOVenta daoventa = new DAOVenta();
-        venta.setCliente("UV");
+        venta.setCliente("irving");
         venta.setFecha(new Date(new java.util.Date().getTime()));
         venta.setTotal(1000.00);
-        daoventa.save(venta);
-        Session session = sf.getCurrentSession();
-        Transaction transaction = session.beginTransaction();
-
+        
         for (int i = 0; i < 5; i++) {
             DetalleVenta det = new DetalleVenta();
-            det.setPrecio(100);
-            det.setCantidad(10);
+            det.setPrecio(10);
+            det.setCantidad(100);
             det.setProducto("Producto" + (i + 1));
-            det.setVenta(venta);
-            session.persist(det);
+            venta.getDetalleVenta().add(det);
         }
-
-        transaction.commit();
-        System.err.println("Se guardó con ID: " + venta.getId());
+        DAOVenta daoventa = new DAOVenta();
+        daoventa.save(venta);
+        //System.err.println("Se guardó con ID: " + venta.getId());
 
 //        DAOEmpleado metodo = new DAOEmpleado();
 //
